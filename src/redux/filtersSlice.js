@@ -9,13 +9,12 @@ const slise = createSlice({
 
   reducers: {
     setFilterContact: (state, action) => {
-      return {
-        ...state,
-        name: action.payload,
-      };
+      state.name = action.payload;
     },
   },
 });
+
+export const selectNameFilter = state => state.contacts.name;
 
 export const { setFilterContact } = slise.actions;
 export default slise.reducer;
