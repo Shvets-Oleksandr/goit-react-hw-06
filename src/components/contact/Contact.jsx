@@ -1,9 +1,18 @@
-import css from './Contact.module.css';
-
+import { useDispatch } from 'react-redux';
 import { IoPersonSharp } from 'react-icons/io5';
 import { IoCall } from 'react-icons/io5';
 
-const Contact = ({ contact, onDelete }) => {
+import { deleteContact } from '../../redux/actions';
+
+import css from './Contact.module.css';
+
+const Contact = ({ contact }) => {
+  const dispatch = useDispatch();
+
+  const handelDelete = () => {
+    dispatch(deleteContact(contact.id));
+  };
+
   return (
     <>
       <ul className={css.dataContactList}>
@@ -14,7 +23,7 @@ const Contact = ({ contact, onDelete }) => {
           <IoCall /> {contact.number}
         </li>
       </ul>
-      <button type="button" onClick={() => onDelete(contact.id)}>
+      <button type="button" onClick={handelDelete}>
         Delete
       </button>
     </>
